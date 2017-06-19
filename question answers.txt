@@ -1,0 +1,1 @@
+loan amount ?? funded amount ?? funded_inv
