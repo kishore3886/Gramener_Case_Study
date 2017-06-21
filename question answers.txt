@@ -1,1 +1,29 @@
 loan amount ?? funded amount ?? funded_inv
+
+credit line ?
+
+univariate analysis: Histograms 
+bivariate analysis: group the data by categorical variables 
+
+creating meta data file -- ?
+
+what are ordered categorical variables?
+
+term vs interest rate?
+
+Find the average interese rate for each term
+
+title vs interest rate?
+
+home_ownership vs interest rate?
+
+annual income vs interest rate?(devide into multiple slots)
+
+revol_bal : In credit card terms, a revolving balance is the portion of credit card spending that goes unpaid at the end of a billing cycle.
+The amount can vary, going up or down depending on the amount borrowed and the amount repaid.
+
+
+loan_status vs everything else
+
+the company wants to understand the driving factors (or driver variables) behind loan default, i.e. the variables which are strong indicators of default.
+ The company can utilise this knowledge for its portfolio and risk assessment. 

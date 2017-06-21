@@ -1,5 +1,10 @@
 install.packages("party")
+install.packages("stringr")
+
 library("party")
+library(ggplot2)
+library(stringr)
+library(dplyr)
 
 #-----Gramener Case Study-----------
 #load the data
@@ -38,5 +43,37 @@ loan_Data<-loan_Data[ , !(names(loan_Data) %in% drops)]
 write.csv(loan_Data,file="cleaned_Data.csv")
 
 #---------treating missing values--------------------
-#replace blanks in emp_title with Other
+#replace blanks in emp_title with "Other"
 loan_Data$emp_title<-sub("^$","Other",loan_Data$emp_title)
+
+summary(loan_Data$emp_length)
+
+loan_Copy<-loan_Data
+#convert date to prpoper format
+
+#loan_Copy$earliest_cr_line<- as.POSIXlt(loan_Copy$earliest_cr_line, format = "%d-%m-%Y %H:%M")
+                                        
+#loan_Copy$earliest_cr_line<- as.Date(loan_Copy$earliest_cr_line,format='%B,%d,%Y')
+
+write.csv(loan_Data,file="cleaned_Data4.csv")
+#to check number od rows and columns of data after cleaning  nrow(loan_Data)
+ncol(loan_Data)
+nrow(loan_Data)
+#to check if any dupicates exists in id, member_id columns
+length(unique(loan_Data$member_id))
+length(loan_Data$member_id)
+length(unique(loan_Data$id))
+length(loan_Data$id)
+#convert int_rate to numeric for calculations purposes 
+loan_Copy$int_rate<- str_replace_all(loan_Copy$int_rate,'%','')
+loan_Copy$int_rate<-as.numeric(loan_Copy$int_rate)
+#-----------------------------------UNIVARIATE ANALYSIS STARTS HERE----------------------
+#TERM VS INTEREST RATE to check if interest rate is affected by term 
+
+mean(loan_Copy$int_rate)
+loan_Copy %>%
+  group_by(term) %>%
+  summarize(mean_int_Rate = mean(int_rate, na.rm = TRUE))
+
+aggregate(loan_Copy$int_rate,loan_Copy$term,mean)
+class(loan_Copy$int_rate)
